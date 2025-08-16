@@ -1,13 +1,40 @@
 {
-  "name": { "en": "Sigenergy Battery" },
+  "name": { "en": "Sigenergy Battery", "nl": "Sigenergy Accu" },
   "class": "battery",
-  "capabilities": ["measure_battery","measure_power","meter_power"],
+  "capabilities": [
+    "measure_battery",
+    "measure_power",
+    "meter_power",
+    "sigenergy_stored_energy"
+  ],
   "images": {
     "small": "/drivers/sigenergy-battery/assets/images/small.png",
     "large": "/drivers/sigenergy-battery/assets/images/large.png"
   },
-  "energy": { "cumulative": true, "homeBattery": true },
+  "energy": {
+    "cumulative": true,
+    "homeBattery": true
+  },
+  "settings": [
+    { "id": "source_device_id", "type": "text", "label": { "en": "Sigenergy device ID", "nl": "Sigenergy apparaat-ID" }, "required": true, "value": "" },
+    { "id": "poll_interval", "type": "number", "label": { "en": "Poll interval (sec)" }, "value": 30, "attr": { "min": 10, "step": 5 } },
+    { "id": "battery_capacity_kwh", "type": "number", "label": { "en": "Battery capacity (kWh)", "nl": "Accu-capaciteit (kWh)" }, "value": 8, "attr": { "min": 1, "step": 0.1 } },
+
+    {
+      "id": "energy_mode",
+      "type": "dropdown",
+      "label": { "en": "Energy mode", "nl": "Energie-modus" },
+      "value": "throughput",
+      "values": [
+        { "id": "discharge",  "label": { "en": "Discharge only", "nl": "Alleen ontladen" } },
+        { "id": "charge",     "label": { "en": "Charge only",    "nl": "Alleen laden" } },
+        { "id": "net",        "label": { "en": "Net (dis - chg)", "nl": "Netto (ontl - lad)" } },
+        { "id": "throughput", "label": { "en": "Throughput (ch+dis)", "nl": "Doorzet (lad+ontl)" } }
+      ]
+    }
+  ],
   "pair": [
-    { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } }
+    { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } },
+    { "id": "add_devices",  "template": "add_devices" }
   ]
 }
