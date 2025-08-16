@@ -1,0 +1,27 @@
+name: Validate Homey App
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci || npm i
+
+      - name: Install Homey CLI
+        run: npm i -g homey
+
+      - name: Validate (compose + TypeScript)
+        run: homey app validate
