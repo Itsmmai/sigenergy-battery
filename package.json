@@ -1,6 +1,6 @@
 {
   "name": "homey-sigenergy-battery",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.33.0",

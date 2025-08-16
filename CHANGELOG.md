@@ -2,6 +2,13 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [1.2.1] - 2025-08-16
+### Fixed
+- TypeScript warnings in sigenergy-load en sigenergy-pv drivers weggewerkt
+- `any` types vervangen door correcte `Homey` types voor betere type safety
+- Dependencies gecontroleerd en gevalideerd
+- Linting zonder waarschuwingen
+
 ## [1.2.0] - 2025-08-16
 ### Added
 - Nieuwe driver: **Sigenergy PV**
