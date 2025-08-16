@@ -26,6 +26,7 @@
     "email": "ab@helversteijn-smit.nl"
   },
   "permissions": [],
+  "esm": true,
   "drivers": [
     {
       "name": {
@@ -69,6 +70,93 @@
         }
       ],
       "id": "sigenergy-battery"
+    },
+    {
+      "name": {
+        "en": "Sigenergy Load"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_power",
+        "meter_power"
+      ],
+      "capabilitiesOptions": {
+        "measure_power": {
+          "setable": true,
+          "getable": true,
+          "decimals": 0
+        },
+        "meter_power": {
+          "setable": true,
+          "getable": true,
+          "decimals": 3
+        }
+      },
+      "images": {
+        "small": "/drivers/sigenergy-load/assets/images/small.png",
+        "large": "/drivers/sigenergy-load/assets/images/large.png"
+      },
+      "energy": {
+        "cumulative": true
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "sigenergy-load"
+    },
+    {
+      "name": {
+        "en": "Sigenergy PV"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_power",
+        "meter_power"
+      ],
+      "capabilitiesOptions": {
+        "measure_power": {
+          "setable": true,
+          "getable": true,
+          "decimals": 0
+        },
+        "meter_power": {
+          "setable": true,
+          "getable": true,
+          "decimals": 3
+        }
+      },
+      "images": {
+        "small": "/drivers/sigenergy-pv/assets/images/small.png",
+        "large": "/drivers/sigenergy-pv/assets/images/large.png"
+      },
+      "energy": {
+        "cumulative": true,
+        "solarPanel": true
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "sigenergy-pv"
     }
   ]
 }
