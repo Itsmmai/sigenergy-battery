@@ -1,3 +1,7 @@
+## [1.2.0] — 2025-08-16
+- feat: add PV & Load drivers with polling + logging
+- ci: release on tag only + contents:write
+
 # Changelog — Sigenergy Battery for Homey
 
 Alle belangrijke wijzigingen in dit project worden hier bijgehouden.  
@@ -30,4 +34,3 @@ Het formaat is geïnspireerd op [Keep a Changelog](https://keepachangelog.com/en
 - Eerste werkende versie van **Sigenergy Battery driver**.
 - Homey Energy integratie met SoC (%), vermogen (W), en kWh.
 - Basis icons (small.png, large.png).
-
