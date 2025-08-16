@@ -2,6 +2,17 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [1.3.0] - 2025-01-27
+### Fixed
+- **Kritieke fix**: Sigenergy Battery driver navigation probleem opgelost
+- Ontbrekende `navigation` configuratie toegevoegd aan Battery driver pair array
+- "Ga door" knop werkt nu correct na het selecteren van de Battery driver
+- Apparaat kan nu succesvol worden toegevoegd in Homey zonder vastlopen
+
+### Changed
+- Versie geüpgraded naar 1.3.0 als stabiele release
+- Git tag v1.3.0 aangemaakt voor deze werkende versie
+
 ## [1.2.3] - 2025-08-16
 ### Fixed
 - Sigenergy Battery pairing flow gerepareerd
