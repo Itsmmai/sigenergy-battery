@@ -1,36 +1,25 @@
-## [1.2.0] — 2025-08-16
-- feat: add PV & Load drivers with polling + logging
-- ci: release on tag only + contents:write
+# Changelog
 
-# Changelog — Sigenergy Battery for Homey
+Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
-Alle belangrijke wijzigingen in dit project worden hier bijgehouden.  
-Het formaat is geïnspireerd op [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) en volgt [SemVer](https://semver.org/).
-
----
-
-## [Unreleased]
-- Roadmap: voorbereiden op v2.0.0 (PV + Load + PVOutput integratie).
-- Documentatie uitgebreid (CONTRIBUTING, ROADMAP, templates).
-- CI met linting & `homey app validate`.
-
----
-
-## [1.1.0] — 2025-08-16
+## [1.2.0] - 2025-08-16
 ### Added
-- GitHub repo + workflows voor automatische validatie.
-- ESLint v9 flat config met TypeScript rules.
-- CONTRIBUTING.md, Issue & PR templates.
-- ROADMAP.md met v2/v3/v4 plannen.
-  
+- Nieuwe driver: **Sigenergy PV**
+- Nieuwe driver: **Sigenergy Load**
+- Battery driver uitgebreid met:
+  - Logging van vermogen en energie
+  - Nieuwe capability: *stored energy (kWh)*
+
 ### Changed
-- Opschoning projectstructuur, consistent gebruik van `.homeycompose`.
-- Device listeners opgeruimd → lint clean (geen unused vars).
+- CI workflow gehard voor release.
 
----
-
-## [1.0.0] — 2025-08-15
+## [1.1.0] - 2025-08-15
 ### Added
-- Eerste werkende versie van **Sigenergy Battery driver**.
-- Homey Energy integratie met SoC (%), vermogen (W), en kWh.
-- Basis icons (small.png, large.png).
+- Basis Homey app voor Sigenergy Battery.
+- Integratie met Homey Energy (SoC, vermogen, dagverbruik).
+- HomeyScript integratie voor PVOutput.
+
+## [1.0.0] - 2025-08-14
+### Initial Release
+- Eerste werkende driver voor **Sigenergy Battery**.
+- Basis capabilities (SoC, vermogen, energie).
