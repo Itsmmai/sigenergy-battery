@@ -1,0 +1,10 @@
+{
+  "name": "homey-sigenergy-battery",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "homey-apps-sdk-v3-types": "^0.3.12",
+    "typescript": "^5.5.0"
+  }
+}

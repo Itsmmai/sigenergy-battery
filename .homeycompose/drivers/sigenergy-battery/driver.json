@@ -1,0 +1,13 @@
+{
+  "name": { "en": "Sigenergy Battery" },
+  "class": "battery",
+  "capabilities": ["measure_battery","measure_power","meter_power"],
+  "images": {
+    "small": "/drivers/sigenergy-battery/assets/images/small.png",
+    "large": "/drivers/sigenergy-battery/assets/images/large.png"
+  },
+  "energy": { "cumulative": true, "homeBattery": true },
+  "pair": [
+    { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } }
+  ]
+}
