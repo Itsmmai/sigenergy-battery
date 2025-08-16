@@ -2,6 +2,12 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [1.2.3] - 2025-08-16
+### Fixed
+- Sigenergy Battery pairing flow gerepareerd
+- Ontbrekende "add_devices" stap toegevoegd aan Battery driver configuratie
+- Nu kun je door na het selecteren van de Battery driver
+
 ## [1.2.2] - 2025-08-16
 ### Fixed
 - TypeScript compilatie fouten opgelost
