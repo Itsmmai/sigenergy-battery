@@ -1,18 +1,27 @@
-name: Create Release
+name: Release Homey App
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    tags: ['v*.*.*']   # <-- alleen op tags
+
+permissions:
+  contents: write      # <-- nodig om een Release aan te maken
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm ci || npm i
+      - run: npm i -g homey
+      - name: Validate
+        run: homey app validate
+      - name: Pack (.homey)
+        run: homey app pack --output app.homey
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          files: app.homey
           generate_release_notes: true
