@@ -20,7 +20,7 @@ class SigenergyPvDevice extends Homey.Device {
     if (!sourceId) return; // geen bron → script mag zetten
     const run = async () => {
       try {
-        const sig = await (this.homey as Homey).devices.getDevice({ id: sourceId });
+        const sig = await (this.homey as any).devices.getDevice({ id: sourceId });
         const get = (c: string) => sig?.capabilitiesObj?.[c]?.value;
         const pPv = Number(get('measure_power.pv')) || 0;
         await this.setCapabilityValue('measure_power', Math.round(pPv));

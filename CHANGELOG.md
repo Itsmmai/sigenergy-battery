@@ -2,6 +2,12 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [1.2.2] - 2025-08-16
+### Fixed
+- TypeScript compilatie fouten opgelost
+- Homey namespace correct gebruikt als type casting naar any
+- App compileert nu succesvol met Homey CLI
+
 ## [1.2.1] - 2025-08-16
 ### Fixed
 - TypeScript warnings in sigenergy-load en sigenergy-pv drivers weggewerkt
