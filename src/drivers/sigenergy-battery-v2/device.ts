@@ -290,7 +290,7 @@ class SigenergyBatteryV2Device extends Device {
       try {
         this.log(`Trying HTTP endpoint: ${baseUrl}${endpoint}`);
         
-        const response = await this.homey.http.get(`${baseUrl}${endpoint}`, {
+        const response = await (this.homey as any).http.get(`${baseUrl}${endpoint}`, {
           headers,
           timeout: 5000
         });
@@ -420,7 +420,7 @@ class SigenergyBatteryV2Device extends Device {
     }
 
     try {
-      const pvOutputData = {
+      const pvOutputData: Record<string, string | number> = {
         d: now.toISOString().split('T')[0], // Date in YYYY-MM-DD format
         t: now.toTimeString().split(' ')[0], // Time in HH:MM format
         v1: data.pv.power, // PV Generation Now (W)
@@ -437,7 +437,7 @@ class SigenergyBatteryV2Device extends Device {
         v12: data.energy.daily_grid_export // Grid Export Today (kWh)
       };
 
-      const response = await this.homey.http.post('https://pvoutput.org/service/r2/addstatus.jsp', {
+      const response = await (this.homey as any).http.post('https://pvoutput.org/service/r2/addstatus.jsp', {
         headers: {
           'X-Pvoutput-Apikey': settings.pvoutput_api_key,
           'X-Pvoutput-SystemId': settings.pvoutput_system_id,
