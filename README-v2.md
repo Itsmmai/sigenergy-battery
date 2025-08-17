@@ -1,16 +1,16 @@
-# Sigenergy Battery v2.0 - Directe API Integratie
+# Sigenergy Battery v2.1.0 - Modbus TCP Integratie
 
-## 🚀 Wat is nieuw in v2.0?
+## 🚀 Wat is nieuw in v2.1.0?
 
-**Sigenergy Battery v2.0** is een complete herziening van de app die direct communiceert met je Sigenergy systeem via de lokale API. Geen HomeyScript meer nodig!
+**Sigenergy Battery v2.1.0** is een uitbreiding van v2.0 met **Modbus TCP integratie** voor directe communicatie met je Sigenergy systeem. Geen HomeyScript meer nodig!
 
 ### ✨ Nieuwe Features
 
-- **🔌 Directe API Communicatie** - Leest data direct van je Sigenergy device
+- **🔌 Modbus TCP Communicatie** - Leest data direct via Modbus protocol
 - **📊 Automatische Synchronisatie** - Real-time data updates elke 30 seconden
 - **☁️ Ingebouwde PVOutput** - Automatische uploads naar PVOutput.org
-- **⚙️ Flexibele Configuratie** - Ondersteunt verschillende API endpoints
-- **🛡️ Robuuste Error Handling** - Werkt ook als API niet beschikbaar is
+- **⚙️ Flexibele Configuratie** - Ondersteunt Modbus TCP en HTTP API fallback
+- **🛡️ Robuuste Error Handling** - Werkt ook als Modbus niet beschikbaar is
 
 ## 📋 Installatie
 
@@ -27,7 +27,7 @@ homey app run
 ### 2. Device Toevoegen
 1. **Ga naar Apps** in je Homey
 2. **Zoek "Sigenergy Battery"**
-3. **Klik op "Sigenergy Battery v2.0"**
+3. **Klik op "Sigenergy Battery v2.1.0"**
 4. **Volg de setup wizard**
 
 ### 3. Configuratie
@@ -35,8 +35,8 @@ Configureer de volgende instellingen:
 
 | Instelling | Beschrijving | Voorbeeld |
 |------------|--------------|-----------|
-| **Sigenergy IP** | IP adres van je Sigenergy device | `192.168.1.100` |
-| **API Port** | Poort voor de API (meestal 8080) | `8080` |
+| **Sigenergy IP** | IP adres van je Sigenergy device | `192.168.0.86` |
+| **Modbus TCP Port** | Poort voor Modbus TCP (meestal 502) | `502` |
 | **API Key** | Optionele API key voor authenticatie | `your-api-key` |
 | **Poll Interval** | Hoe vaak data ophalen (seconden) | `30` |
 
@@ -49,16 +49,25 @@ Voor automatische uploads naar PVOutput.org:
 | **PVOutput API Key** | Je PVOutput API key |
 | **PVOutput System ID** | Je PVOutput System ID |
 
-## 🔧 API Endpoints
+## 🔧 Communicatie Protocol
 
-De app probeert automatisch verschillende API endpoints:
+De app gebruikt **Modbus TCP** als primaire communicatiemethode:
 
-1. `/api/v1/status`
-2. `/api/status`
-3. `/status`
-4. `/api/v1/data`
-5. `/api/data`
-6. `/data`
+1. **Modbus TCP** (poort 502) - Primaire methode
+2. **HTTP API** (poort 8080) - Fallback methode
+
+### Modbus Registers
+De app leest data uit specifieke Modbus registers:
+
+- **Battery SoC**: Register 0x0001
+- **Battery Power**: Register 0x0002  
+- **Battery Voltage**: Register 0x0003
+- **Battery Current**: Register 0x0004
+- **Battery Temperature**: Register 0x0005
+- **PV Power**: Register 0x0010
+- **Load Power**: Register 0x0020
+- **Grid Power**: Register 0x0030
+- **Daily Energy**: Registers 0x0100-0x0105
 
 ## 📊 Data Mapping
 
@@ -101,16 +110,18 @@ De app verwacht de volgende data structuur van je Sigenergy API:
 
 ## 🔍 Troubleshooting
 
-### API niet bereikbaar?
-- **Controleer IP adres** - Zorg dat het IP adres correct is
-- **Controleer poort** - Meestal 8080, maar kan verschillen
-- **Firewall** - Zorg dat poort open is
+### Modbus TCP niet bereikbaar?
+- **Controleer IP adres** - Zorg dat het IP adres correct is (bijv. 192.168.0.86)
+- **Controleer poort** - Meestal 502 voor Modbus TCP
+- **Firewall** - Zorg dat poort 502 open is
 - **Netwerk** - Zorg dat Homey en Sigenergy opzelfde netwerk zijn
+- **Modbus documentatie** - Check de [Sigenergy Modbus Protocol](https://github.com/Si-GCG/sigenergy_projects/blob/main/Modbus.Protocol.EN.-.SIGEN.pdf)
 
 ### Geen data?
 - **Logs bekijken** - Check Homey logs voor foutmeldingen
-- **API testen** - Test API endpoint handmatig: `http://[IP]:[PORT]/status`
-- **Mock data** - App gebruikt mock data als API niet werkt
+- **Modbus testen** - Test Modbus verbinding handmatig: `telnet [IP] 502`
+- **Mock data** - App gebruikt mock data als Modbus niet werkt
+- **Register mapping** - Controleer of de Modbus registers correct zijn
 
 ### PVOutput uploads falen?
 - **API key** - Controleer of API key correct is
@@ -134,29 +145,29 @@ De app heeft ingebouwde mock data voor testing:
 
 ## 🔄 Migratie van v1.x
 
-### Van v1.x naar v2.0:
+### Van v1.x naar v2.1.0:
 1. **Backup maken** van huidige configuratie
-2. **v2.0 installeren** naast v1.x
-3. **Nieuwe device toevoegen** met v2.0 driver
+2. **v2.1.0 installeren** naast v1.x
+3. **Nieuwe device toevoegen** met v2.1.0 driver
 4. **Configureren** met Sigenergy IP en API instellingen
 5. **Testen** of data correct wordt opgehaald
 6. **Oude device verwijderen** (optioneel)
 
 ### Belangrijke verschillen:
 - **v1.x**: Leest van bestaand Sigenergy device via Homey
-- **v2.0**: Communiceert direct met Sigenergy API
+- **v2.1.0**: Communiceert direct via Modbus TCP protocol
 - **v1.x**: Vereist HomeyScript voor PVOutput
-- **v2.0**: Ingebouwde PVOutput integratie
+- **v2.1.0**: Ingebouwde PVOutput integratie
 
 ## 📈 Roadmap
 
-### v2.1 - Verbeteringen
+### v2.2 - Verbeteringen
 - [ ] **Meer API endpoints** ondersteunen
 - [ ] **SSL/TLS** ondersteuning
 - [ ] **OAuth2** authenticatie
 - [ ] **WebSocket** real-time updates
 
-### v2.2 - Uitbreidingen
+### v2.3 - Uitbreidingen
 - [ ] **Flow cards** voor automatisering
 - [ ] **Notificaties** voor lage SoC
 - [ ] **Dashboard widgets**

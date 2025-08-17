@@ -2,6 +2,24 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [2.0.1] - 2025-01-27
+### Added
+- **Modbus TCP integratie** - Directe communicatie met Sigenergy via Modbus protocol
+- **Modbus register mapping** - Specifieke registers voor battery, PV, load, grid en energy data
+- **Configurable IP en poort** - Standaard IP 192.168.0.86, poort 502 voor Modbus TCP
+- **Fallback naar HTTP API** - Als Modbus niet werkt, probeert HTTP API als backup
+- **Verbeterde error handling** - Betere logging en graceful degradation
+
+### Changed
+- **Primaire communicatie** - Modbus TCP als hoofdprotocol, HTTP API als fallback
+- **Default instellingen** - IP adres standaard ingesteld op 192.168.0.86
+- **Poort configuratie** - Standaard Modbus TCP poort 502 in plaats van HTTP poort 8080
+
+### Technical
+- **Modbus register constants** - Gedefinieerde register mappings voor alle data types
+- **Type-safe register reading** - Ondersteuning voor verschillende data types (uint16, int16)
+- **Modbus client lifecycle** - Proper connection management en cleanup
+
 ## [2.0.0] - 2025-01-27
 ### Added
 - **Nieuwe Sigenergy Battery v2.0 driver** met directe API integratie

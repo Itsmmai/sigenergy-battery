@@ -18,14 +18,14 @@
       "type": "text", 
       "label": { "en": "Sigenergy Device IP Address" }, 
       "required": true, 
-      "value": "",
-      "placeholder": "192.168.1.100"
+      "value": "192.168.0.86",
+      "placeholder": "192.168.0.86"
     },
     { 
       "id": "sigenergy_port", 
       "type": "number", 
-      "label": { "en": "API Port" }, 
-      "value": 8080, 
+      "label": { "en": "Modbus TCP Port" }, 
+      "value": 502, 
       "attr": { "min": 1, "max": 65535 }
     },
     { 
