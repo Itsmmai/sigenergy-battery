@@ -2,6 +2,28 @@
 
 Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 
+## [2.0.0] - 2025-01-27
+### Added
+- **Nieuwe Sigenergy Battery v2.0 driver** met directe API integratie
+- **Directe Sigenergy API communicatie** - geen HomeyScript meer nodig
+- **Automatische data synchronisatie** via HTTP API calls
+- **Ingebouwde PVOutput integratie** - automatische uploads naar PVOutput
+- **Flexibele API configuratie** - ondersteunt verschillende endpoints en protocollen
+- **Uitgebreide device settings** voor IP, poort, API key en polling interval
+- **Robuuste error handling** met fallback naar mock data voor testing
+
+### Changed
+- **Versie geüpgraded naar 2.0.0** als major release
+- **Nieuwe driver architectuur** voor directe Sigenergy communicatie
+- **Verbeterde data parsing** met ondersteuning voor verschillende API response formats
+- **Automatische PVOutput uploads** elke 5 minuten (rate limiting compliant)
+
+### Technical
+- **TypeScript interfaces** voor type-safe data handling
+- **Modulaire API testing** - probeert verschillende endpoints automatisch
+- **Comprehensive logging** voor debugging en monitoring
+- **Graceful degradation** - werkt ook zonder werkende API (mock data)
+
 ## [1.3.0] - 2025-01-27
 ### Fixed
 - **Kritieke fix**: Sigenergy Battery driver navigation probleem opgelost

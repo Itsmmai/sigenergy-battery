@@ -1,0 +1,70 @@
+{
+  "name": { "en": "Sigenergy Battery v2.0" },
+  "class": "battery",
+  "capabilities": ["measure_battery","measure_power","meter_power"],
+  "capabilitiesOptions": {
+    "measure_battery": { "setable": true, "getable": true, "decimals": 0 },
+    "measure_power":   { "setable": true, "getable": true, "decimals": 0 },
+    "meter_power":     { "setable": true, "getable": true, "decimals": 3 }
+  },
+  "images": {
+    "small": "/drivers/sigenergy-battery/assets/images/small.png",
+    "large": "/drivers/sigenergy-battery/assets/images/large.png"
+  },
+  "energy": { "cumulative": true, "homeBattery": true },
+  "settings": [
+    { 
+      "id": "sigenergy_ip", 
+      "type": "text", 
+      "label": { "en": "Sigenergy Device IP Address" }, 
+      "required": true, 
+      "value": "",
+      "placeholder": "192.168.1.100"
+    },
+    { 
+      "id": "sigenergy_port", 
+      "type": "number", 
+      "label": { "en": "API Port" }, 
+      "value": 8080, 
+      "attr": { "min": 1, "max": 65535 }
+    },
+    { 
+      "id": "api_key", 
+      "type": "text", 
+      "label": { "en": "API Key (optional)" }, 
+      "required": false, 
+      "value": ""
+    },
+    { 
+      "id": "poll_interval", 
+      "type": "number", 
+      "label": { "en": "Poll interval (seconds)" }, 
+      "value": 30, 
+      "attr": { "min": 10, "max": 300, "step": 5 }
+    },
+    { 
+      "id": "pvoutput_enabled", 
+      "type": "boolean", 
+      "label": { "en": "Enable PVOutput upload" }, 
+      "value": false
+    },
+    { 
+      "id": "pvoutput_api_key", 
+      "type": "text", 
+      "label": { "en": "PVOutput API Key" }, 
+      "required": false, 
+      "value": ""
+    },
+    { 
+      "id": "pvoutput_system_id", 
+      "type": "text", 
+      "label": { "en": "PVOutput System ID" }, 
+      "required": false, 
+      "value": ""
+    }
+  ],
+  "pair": [
+    { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } },
+    { "id": "add_devices", "template": "add_devices" }
+  ]
+}
