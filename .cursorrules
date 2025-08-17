@@ -1,0 +1,12 @@
+- Gebruik Homey SDK v3 (CommonJS), géén ESM.
+- Als twijfel: geen Compose; klassieke layout met drivers/*/driver.compose.json.
+- Pair-flow altijd "list_devices".
+- Geen TypeScript zolang pairing niet 100% is.
+- Respecteer icon-afmetingen:
+  - app assets/images/small.png = 250x175
+  - app assets/images/large.png = 1024x500
+  - driver …/assets/images/small.png = 75x75
+- Nooit "PairSession" importeren.
+- Exports: module.exports = ClassName
+- Validatie: “homey app validate” moet groen zijn, en .homeybuild/app.json moet de driver(s) tonen.
+
