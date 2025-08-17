@@ -5,3 +5,18 @@ dist/
 .DS_Store
 npm-debug.log*
 *.zip
+
+# macOS metadata files
+._*
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
