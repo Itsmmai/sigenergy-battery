@@ -118,10 +118,15 @@ check_status() {
     echo "Drivers: $(ls src/drivers/ | wc -l)"
     
     echo -e "\n=== Debian VM Status ==="
-    ssh debian "cd $APP_DIR && echo 'Version: \$(grep \"\\\"version\\\"\" package.json | cut -d\\\"\\\" -f4)' && echo 'Drivers: \$(ls src/drivers/ | wc -l)'"
+    if ssh debian "test -d $APP_DIR"; then
+        ssh debian "cd $APP_DIR && grep '\"version\"' package.json | cut -d'\"' -f4"
+        ssh debian "cd $APP_DIR && ls src/drivers/ | wc -l"
+    else
+        echo "App directory not found on Debian VM"
+    fi
     
     echo -e "\n=== Homey Status ==="
-    ssh debian "homey app list | grep sigenergy || echo 'App not found on Homey'"
+    ssh debian "homey app list 2>/dev/null | grep sigenergy || echo 'App not found on Homey (or homey CLI issue)'"
 }
 
 # Function to update app (sync + install)
