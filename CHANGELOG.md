@@ -9,6 +9,7 @@ Alle belangrijke wijzigingen aan dit project worden hier gedocumenteerd.
 - **Configurable IP en poort** - Standaard IP 192.168.0.86, poort 502 voor Modbus TCP
 - **Fallback naar HTTP API** - Als Modbus niet werkt, probeert HTTP API als backup
 - **Verbeterde error handling** - Betere logging en graceful degradation
+- **TypeScript fixes** - Opgeloste compilatie fouten voor http property en type definitions
 
 ### Changed
 - **Primaire communicatie** - Modbus TCP als hoofdprotocol, HTTP API als fallback

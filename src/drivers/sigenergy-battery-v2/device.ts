@@ -68,7 +68,6 @@ const MODBUS_REGISTERS = {
 
 class SigenergyBatteryV2Device extends Device {
   private timer?: NodeJS.Timeout;
-  private lastPvOutputUpload?: Date;
   private modbusClient?: any; // Will be initialized when needed
 
   async onInit() {
@@ -171,7 +170,6 @@ class SigenergyBatteryV2Device extends Device {
 
       if (data) {
         await this.updateCapabilities(data);
-        await this.uploadToPvOutput(data);
       }
     } catch (error) {
       this.error('Failed to fetch Sigenergy data:', error);
@@ -406,56 +404,7 @@ class SigenergyBatteryV2Device extends Device {
     }
   }
 
-  private async uploadToPvOutput(data: SigenergyData): Promise<void> {
-    const settings = this.getSettings();
-    
-    if (!settings.pvoutput_enabled || !settings.pvoutput_api_key || !settings.pvoutput_system_id) {
-      return;
-    }
 
-    // Only upload every 5 minutes to avoid rate limiting
-    const now = new Date();
-    if (this.lastPvOutputUpload && (now.getTime() - this.lastPvOutputUpload.getTime()) < 5 * 60 * 1000) {
-      return;
-    }
-
-    try {
-      const pvOutputData: Record<string, string | number> = {
-        d: now.toISOString().split('T')[0], // Date in YYYY-MM-DD format
-        t: now.toTimeString().split(' ')[0], // Time in HH:MM format
-        v1: data.pv.power, // PV Generation Now (W)
-        v2: data.load.power, // Power Consumption Now (W)
-        v3: data.battery.power, // Battery Power Now (W)
-        v4: data.battery.soc, // Battery SoC (%)
-        v5: data.battery.temperature, // Battery Temperature (°C)
-        v6: data.energy.daily_pv, // PV Generation Today (kWh)
-        v7: data.energy.daily_load, // Power Consumption Today (kWh)
-        v8: data.energy.daily_charge, // Battery Charge Today (kWh)
-        v9: data.energy.daily_discharge, // Battery Discharge Today (kWh)
-        v10: data.grid.power, // Grid Power Now (W)
-        v11: data.energy.daily_grid_import, // Grid Import Today (kWh)
-        v12: data.energy.daily_grid_export // Grid Export Today (kWh)
-      };
-
-      const response = await (this.homey as any).http.post('https://pvoutput.org/service/r2/addstatus.jsp', {
-        headers: {
-          'X-Pvoutput-Apikey': settings.pvoutput_api_key,
-          'X-Pvoutput-SystemId': settings.pvoutput_system_id,
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data: new URLSearchParams(pvOutputData).toString()
-      });
-
-      if (response.status === 200) {
-        this.lastPvOutputUpload = now;
-        this.log('Successfully uploaded to PVOutput');
-      } else {
-        this.error('PVOutput upload failed:', response.status);
-      }
-    } catch (error) {
-      this.error('PVOutput upload error:', error);
-    }
-  }
 }
 
 module.exports = SigenergyBatteryV2Device;

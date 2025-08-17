@@ -41,26 +41,6 @@
       "label": { "en": "Poll interval (seconds)" }, 
       "value": 30, 
       "attr": { "min": 10, "max": 300, "step": 5 }
-    },
-    { 
-      "id": "pvoutput_enabled", 
-      "type": "boolean", 
-      "label": { "en": "Enable PVOutput upload" }, 
-      "value": false
-    },
-    { 
-      "id": "pvoutput_api_key", 
-      "type": "text", 
-      "label": { "en": "PVOutput API Key" }, 
-      "required": false, 
-      "value": ""
-    },
-    { 
-      "id": "pvoutput_system_id", 
-      "type": "text", 
-      "label": { "en": "PVOutput System ID" }, 
-      "required": false, 
-      "value": ""
     }
   ],
   "pair": [
